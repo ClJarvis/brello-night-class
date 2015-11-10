@@ -86,25 +86,12 @@ namespace Brello.Tests.Models
         [TestMethod]
         public void BoardRepositoryEnsureThereAreZeroLists()
         {
-            BoardRepository board_repo = new BoardRepository(mock_context.Object);
-            
-            int expected = 0;
-            int actual = board_repo.GetAllLists().Count;
-            Assert.AreEqual(expected, actual);
-            
-        }
-
-        // These tests are telling us to start looking at
-        // How to define CRUD operations for Boards
-        // Why? Because a List cannot exists without a Board
-        [TestMethod]
-        public void BoardRepositoryEnsureABoardHasZeroLists()
-        {
-            /* Begin Arrange */
             var mock_boards = new Mock<DbSet<Board>>();
             ApplicationUser user1 = new ApplicationUser();
+            ApplicationUser user2 = new ApplicationUser();
             var my_list = new List<Board> {
-                new Board { Title = "Tim's Board", Owner = user1, BoardId = 1}
+                new Board { Title = "Tim's Board", Owner = user1},
+                new Board {Title = "Sally's Board", Owner = user2 }
             }; // So I can use later
             var data = my_list.AsQueryable();
 
@@ -114,6 +101,8 @@ namespace Brello.Tests.Models
             mock_boards.As<IQueryable<Board>>().Setup(m => m.Expression).Returns(data.Expression);
 
             mock_context.Setup(m => m.Boards).Returns(mock_boards.Object);
+
+           
             /* Begin Act */
             BoardRepository board_repo = new BoardRepository(mock_context.Object);
             /* Begin Assert */
