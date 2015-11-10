@@ -21,7 +21,20 @@ namespace Brello.Models
 
         public List<BrelloList> GetAllLists()
         {
-            return null;
+            var query = from l in context.Boards select l;
+
+            /* trying to maake selectMany example work 
+            Board[] petOwners =
+                    { new Board { Title="Higa, Sidney",
+                          Lists = new List<BrelloList>()},
+                      new Board { Title="Ashkenazi, Ronen",
+                          Lists = new List<BrelloList>() },
+                      new Board { Title="Price, Vernette",
+                          Lists = new List<BrelloList>()} };
+
+            IEnumerable<BrelloList> query1 = petOwners.SelectMany(petOwner => petOwner.Lists);
+            */
+             return query.SelectMany(board => board.Lists).ToList();
         }
 
         // This is an example of overloading a method
