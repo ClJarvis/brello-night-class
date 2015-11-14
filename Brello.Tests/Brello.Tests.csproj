@@ -96,6 +96,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BoardBoardContext.cs" />
     <Compile Include="Controllers\BoardContollerTest.cs" />
     <Compile Include="Models\BoardRepositoryTests.cs" />
     <Compile Include="Models\BoardTests.cs" />
