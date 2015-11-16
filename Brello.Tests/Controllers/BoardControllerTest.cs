@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Brello.Controllers;
 using System.Web.Mvc;
 using Moq;
@@ -19,7 +18,7 @@ namespace Brello.Tests.Controllers
         public void Initialize()
         {
             mock_context = new Mock<BoardContext>();
-            mock_repository = new Mock<BoardRepository> { p}
+            mock_repository = new Mock<BoardRepository> {  };
             owner = new ApplicationUser();
             user1 = new ApplicationUser();
             user2 = new ApplicationUser();
