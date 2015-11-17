@@ -18,11 +18,9 @@ namespace Brello.Tests.Controllers
         public void Initialize()
         {
             mock_context = new Mock<BoardContext>();
-<<<<<<< HEAD
+
             mock_repository = new Mock<BoardRepository>(MockBehavior.Strict, mock_context.Object);
-=======
-            mock_repository = new Mock<BoardRepository> {  };
->>>>>>> 4b8dd9dc2b1f464ef513bd1125a8a12dcd762df7
+
             owner = new ApplicationUser();
             user1 = new ApplicationUser();
             user2 = new ApplicationUser();

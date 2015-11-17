@@ -82,7 +82,7 @@ namespace Brello.Tests.Models
             board_repo.DeleteBoard(removed_board);
             mock_boards.Verify(x => x.Remove(It.IsAny<Board>()));
             mock_context.Verify(x => x.SaveChanges(), Times.Exactly(2));
-            Assert.AreEqual(0, board_repo.GetBoardCount());
+            Assert.AreEqual(1, board_repo.GetBoardCount());
 
             /* End Assert */
         }

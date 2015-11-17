@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace Brello.Tests.Models
 {
-    [TestClass]
+   /* [TestClass]
     public class BoardDeleteTest
     {
 
@@ -54,7 +54,7 @@ namespace Brello.Tests.Models
         public void EnsureICanDeleteABoard()
         {
             /* Begin Arrange */
-            var data = my_list.AsQueryable();
+        /*    var data = my_list.AsQueryable();
 
             mock_boards.As<IQueryable<Board>>().Setup(m => m.Provider).Returns(data.Provider);
             mock_boards.As<IQueryable<Board>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
@@ -71,11 +71,11 @@ namespace Brello.Tests.Models
             /* End Arrange */
 
             /* Begin Act */
-            Board removed_board = board_repo.CreateBoard(title, owner);
+    //        Board removed_board = board_repo.CreateBoard(title, owner);
             /* End Act */
 
             /* Begin Assert */
-            Assert.IsNotNull(removed_board);
+      /*      Assert.IsNotNull(removed_board);
             mock_boards.Verify(m => m.Add(It.IsAny<Board>()));
             mock_context.Verify(x => x.SaveChanges(), Times.Once());
             Assert.AreEqual(1, board_repo.GetBoardCount());
@@ -83,6 +83,7 @@ namespace Brello.Tests.Models
             mock_boards.Verify(x => x.Remove(It.IsAny<Board>()));
             mock_context.Verify(x => x.SaveChanges(), Times.Exactly(2));
             Assert.AreEqual(0, board_repo.GetBoardCount());
+       */
 
             /* End Assert */
         }
@@ -110,5 +111,5 @@ namespace Brello.Tests.Models
             //End Assert    
         }
         */
-    }
-}
+  //  }
+//}

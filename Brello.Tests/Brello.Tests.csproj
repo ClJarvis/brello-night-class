@@ -104,11 +104,10 @@
     <Compile Include="Models\CardTests.cs" />
     <Compile Include="Models\CarTests.cs" />
     <Compile Include="Models\ColorTests.cs" />
-<<<<<<< HEAD
+
     <Compile Include="Models\DeleteTests.cs" />
-=======
     <Compile Include="Models\DeleteTestsNew.cs" />
->>>>>>> 4b8dd9dc2b1f464ef513bd1125a8a12dcd762df7
+
     <Compile Include="Models\VoteTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />

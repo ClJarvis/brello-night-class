@@ -82,9 +82,13 @@ namespace Brello.Models
             return GetAllLists().Count;
         }
 
-        public void DeleteBoard(Board removed_board)
+        public Board DeleteBoard(Board removed_board)
         {
-            throw new NotImplementedException();
+            Board my_board = new Board { };
+            context.Boards.Remove(my_board);
+            context.SaveChanges(); 
+
+            return my_board;
         }
     }
 }
