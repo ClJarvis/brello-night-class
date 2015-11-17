@@ -58,7 +58,7 @@ namespace Brello.Models
             return my_board;
         }
 
-        public List<Board> GetAllBoards()
+        public virtual List<Board> GetAllBoards()
         {
             return context.Boards.ToList();
         }
@@ -80,6 +80,11 @@ namespace Brello.Models
         public int GetListCount()
         {
             return GetAllLists().Count;
+        }
+
+        public void DeleteBoard(Board removed_board)
+        {
+            throw new NotImplementedException();
         }
     }
 }
