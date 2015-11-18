@@ -90,5 +90,15 @@ namespace Brello.Models
 
             return my_board;
         }
+
+        public BrelloList BrelloListId()
+        {
+            BrelloList my_list = new BrelloList { };
+            context.Boards.Remove(my_list);
+            //board_repo.BrelloListId()
+            context.SaveChanges();
+
+            return my_list;
+        }
     }
 }
