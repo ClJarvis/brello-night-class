@@ -82,21 +82,21 @@ namespace Brello.Models
             return GetAllLists().Count;
         }
 
-        public void  DeleteBoard(Board removed_board)
+        public void DeleteBoard(Board removed_board)
         {
             Board my_board = removed_board ;
             context.Boards.Remove(my_board);
             context.SaveChanges(); 
         }
 
-        public BrelloList BrelloListId()
+        public void DeleteList(Board removed_list)
         {
-            BrelloList my_list = new BrelloList { };
-            //context.Boards.Remove(my_list);
+            Board my_list = removed_list;
+            context.Boards.Remove(my_list);
             //board_repo.BrelloListId()
             context.SaveChanges();
 
-            return my_list;
+           // return my_list;
         }
     }
 }

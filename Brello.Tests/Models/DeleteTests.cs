@@ -98,14 +98,19 @@ namespace Brello.Tests.Models
             //End Arrange
             /// new BoardRepository(mock_context.Object);
             //Begin Act
-            BrelloList removed_list = board_repo.BrelloListId();
+            Board removed_list = board_repo.CreateBoard("ToDo", owner);
                   //End Act
                   //Begin Assert
                   Assert.IsNotNull(removed_list);
                   mock_boards.Verify(m => m.Add(It.IsAny<Board>()));
                   mock_context.Verify(x => x.SaveChanges(), Times.Once());
-                  //End Assert    
-              }
+                  Assert.AreEqual(1, board_repo.GetBoardCount());
+                  board_repo.DeleteList(removed_list);
+                  mock_boards.Verify(x => x.Remove(It.IsAny<Board>()));
+                  mock_context.Verify(x => x.SaveChanges(), Times.Exactly(2));
+                  Assert.AreEqual(0, board_repo.GetBoardCount());
+            //End Assert    
+        }
               
     }
 }
