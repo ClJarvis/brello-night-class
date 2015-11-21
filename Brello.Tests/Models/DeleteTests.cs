@@ -72,6 +72,7 @@ namespace Brello.Tests.Models
 
             /* Begin Act */
             Board removed_board = board_repo.CreateBoard(title, owner);
+
             /* End Act */
 
             /* Begin Assert */
@@ -87,28 +88,30 @@ namespace Brello.Tests.Models
             /* End Assert */
         }
 
-              [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethod]
-              public void EnsureICanDeleteAListFromABoard()
-              {
-                  //Begin Arrange
-                  var data = my_list.AsQueryable();
-                  BoardRepository board_repo = new BoardRepository(mock_context.Object);
-                  BrelloList list = new BrelloList { Title = "ToDo", BrelloListId = 1 };
-                  my_list.Remove(new Board { Title = "My First Board", Owner = user1, BoardId = 1 });
+         [TestMethod]
+            public void EnsureICanDeleteAListFromABoard()
+            {
+            //Begin Arrange
+            var data = my_list.AsQueryable();
+            BoardRepository board_repo = new BoardRepository(mock_context.Object);
+            BrelloList list = new BrelloList { Title = "ToDo", BrelloListId = 1 };
+            my_list.Remove(new Board { Title = "My First Board", Owner = user1, BoardId = 1 });
             //End Arrange
-            /// new BoardRepository(mock_context.Object);
+
             //Begin Act
-            Board removed_list = board_repo.CreateBoard("ToDo", owner);
-                  //End Act
-                  //Begin Assert
-                  Assert.IsNotNull(removed_list);
-                  mock_boards.Verify(m => m.Add(It.IsAny<Board>()));
-                  mock_context.Verify(x => x.SaveChanges(), Times.Once());
-                  Assert.AreEqual(1, board_repo.GetBoardCount());
-                  board_repo.DeleteList(removed_list);
-                  mock_boards.Verify(x => x.Remove(It.IsAny<Board>()));
-                  mock_context.Verify(x => x.SaveChanges(), Times.Exactly(2));
-                  Assert.AreEqual(0, board_repo.GetBoardCount());
+           
+            Board removed_list = board_repo.CreateBoard("My First Board", owner);
+            
+            //End Act
+            //Begin Assert
+            Assert.IsNotNull(removed_list);
+            mock_boards.Verify(m => m.Add(It.IsAny<Board>()));
+            mock_context.Verify(x => x.SaveChanges(), Times.Once());
+            Assert.AreEqual(1, board_repo.GetListCount());
+            board_repo.DeleteList(removed_list);
+            mock_boards.Verify(x => x.Remove(It.IsAny<Board>()));
+            mock_context.Verify(x => x.SaveChanges(), Times.Exactly(2));
+            Assert.AreEqual(0, board_repo.GetListCount());
             //End Assert    
         }
               

@@ -51,7 +51,8 @@ namespace Brello.Models
 
         public Board CreateBoard(string title, ApplicationUser owner)
         {
-            Board my_board = new Board { Title = title, Owner = owner};
+            Board my_board = new Board ();
+            Board removed_list = new Board(); 
             context.Boards.Add(my_board);
             context.SaveChanges(); // This saves something to the Database
 
@@ -91,12 +92,13 @@ namespace Brello.Models
 
         public void DeleteList(Board removed_list)
         {
-            Board my_list = removed_list;
-            context.Boards.Remove(my_list);
-            //board_repo.BrelloListId()
-            context.SaveChanges();
-
-           // return my_list;
+        Board my_list = removed_list;
+        Board my_board = new Board { };
+        
+        context.Boards.Remove(my_list);
+        //board_repo.BrelloListId()
+        context.SaveChanges();
+     // return my_list;
         }
     }
 }
