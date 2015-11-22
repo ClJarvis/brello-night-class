@@ -96,9 +96,7 @@ namespace Brello.Models
         Board my_board = new Board { };
         
         context.Boards.Remove(my_list);
-        //board_repo.BrelloListId()
         context.SaveChanges();
-     // return my_list;
         }
     }
 }
