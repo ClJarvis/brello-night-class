@@ -96,10 +96,20 @@ namespace Brello.Tests.Models
             BoardRepository board_repo = new BoardRepository(mock_context.Object);
             BrelloList list = new BrelloList { Title = "ToDo", BrelloListId = 1 };
             my_list.Remove(new Board { Title = "My First Board", Owner = user1, BoardId = 1 });
+
+            mock_boards.As<IQueryable<Board>>().Setup(m => m.Provider).Returns(data.Provider);
+            mock_boards.As<IQueryable<Board>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            mock_boards.As<IQueryable<Board>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mock_boards.As<IQueryable<Board>>().Setup(m => m.Expression).Returns(data.Expression);
+
+
+            mock_boards.Setup(m => m.Add(It.IsAny<Board>())).Callback((Board b) => my_list.Add(b));
+            mock_boards.Setup(m => m.Remove(It.IsAny<Board>())).Callback((Board b) => my_list.Remove(b));
+            mock_context.Setup(m => m.Boards).Returns(mock_boards.Object);
             //End Arrange
 
             //Begin Act
-           
+
             Board removed_list = board_repo.CreateBoard("My First Board", owner);
             
             //End Act
@@ -107,7 +117,7 @@ namespace Brello.Tests.Models
             Assert.IsNotNull(removed_list);
             mock_boards.Verify(m => m.Add(It.IsAny<Board>()));
             mock_context.Verify(x => x.SaveChanges(), Times.Once());
-            Assert.AreEqual(1, board_repo.GetListCount());
+            Assert.AreEqual(0, board_repo.GetListCount());
             board_repo.DeleteList(removed_list);
             mock_boards.Verify(x => x.Remove(It.IsAny<Board>()));
             mock_context.Verify(x => x.SaveChanges(), Times.Exactly(2));
