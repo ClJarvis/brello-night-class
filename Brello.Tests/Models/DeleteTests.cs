@@ -162,7 +162,7 @@ namespace Brello.Tests.Models
             mock_boards.Verify(x => x.Remove(It.IsAny<Board>()));
             mock_context.Verify(x => x.SaveChanges(), Times.Exactly(2));
             Assert.AreEqual(0, board_repo.GetListCount());
-            string expected = board_repo.ToString();
+            string expected = my_list.ToString();
             string actual = "my Next Board";
            // Assert.AreEqual(title, "my Next Board");
             Assert.AreEqual(expected, actual);
