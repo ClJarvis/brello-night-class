@@ -9,9 +9,14 @@ namespace Brello.Models
     public class BoardRepository
     {
         private BoardContext context;
-        public BoardRepository(BoardContext _context) {
-            context = _context;
+
+        public BoardRepository()
+        {
+            context = new BoardContext();
         }
+        public BoardRepository(BoardContext _context) {
+            context = _context;    
+    }
 
         // void or bool or BrelloList
         public bool AddList(int _board_id, BrelloList _list)

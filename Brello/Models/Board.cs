@@ -7,6 +7,7 @@ namespace Brello.Models
 {
     public class Board
     {
+        [System.ComponentModel.DataAnnotations.Key]
         public int BoardId { get; set; }
         public string Title { get; set; }
         public ApplicationUser Owner { get; set; }
