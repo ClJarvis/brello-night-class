@@ -8,7 +8,11 @@ namespace Brello.Models
 {
     public class Card
     {
+<<<<<<< HEAD
         [Key] //data annataions
+=======
+        [Key]
+>>>>>>> 780784439ff333ec8eefc1857ee45d938ce4ca45
         public int CardId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

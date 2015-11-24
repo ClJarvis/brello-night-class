@@ -29,19 +29,30 @@ namespace Brello.Controllers
         [Authorize]
         public ActionResult Index()
         {
+<<<<<<< HEAD
             // UserManger<ApplicationUser> manager =.Identity.GetUserId();
            UserManager<ApplicationUser> manager =  HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
            ApplicationUser me =  manager.FindById(User.Identity.GetUserId());
+=======
+            //UserManager<ApplicationUser> manager = new UserManager<ApplicationUser>();
+            UserManager<ApplicationUser> manager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            ApplicationUser me = manager.FindById(User.Identity.GetUserId());
+>>>>>>> 780784439ff333ec8eefc1857ee45d938ce4ca45
 
             List<Board> boards = repository.GetBoards(me);
             Board my_board = null;
             if (boards.Count() == 0)
             {
+<<<<<<< HEAD
                 my_board = repository.CreateBoard("My Board", me);
+=======
+                 my_board = repository.CreateBoard("My Board", me);
+>>>>>>> 780784439ff333ec8eefc1857ee45d938ce4ca45
             } else
             {
                 my_board = boards.First();
             }
+<<<<<<< HEAD
 
             repository.CreateBoard("My Board", me);
             //ViewBag.Boards = repository.GetAllBoards();
@@ -53,6 +64,14 @@ namespace Brello.Controllers
 
             
              
+=======
+            ViewBag.Title = my_board.Title;
+
+            //bool successful = repository.AddList(my_board.BoardId, new BrelloList { Title = "ToDo" });
+
+            List<BrelloList> board_lists = repository.GetAllLists(my_board.BoardId);
+
+>>>>>>> 780784439ff333ec8eefc1857ee45d938ce4ca45
             return View(board_lists);
         }
 
