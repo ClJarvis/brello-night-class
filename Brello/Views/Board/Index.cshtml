@@ -9,7 +9,7 @@
         @foreach (var item in Model)
         {
             <div class="brellolist-wrapper">
-                <div class="brellolist-header"></div>
+                <div class="brellolist-header">@item.Title</div>
                 <div class="brellolist">
                     <ul class="center">
 
@@ -18,6 +18,26 @@
                 <div class="brellolist-footer"></div>
             </div>
         }
+        <div class="brellolist-wrapper">
+            <div id="list-modal" role="dialog" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        @using (Html.BeginForm("CreateList", "Board", FormMethod.Post, new { id = "list-form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("board-id", ViewBag.CurrentBoardId as object)
+                        <div class="modal-header">Add new List to @ViewBag.CurrentBoardId </div>
+                        <div class="modal-body">@Html.TextBox("list-name")</div>
+                        
+                        <div class="modal-footer"><input class="btn" tyor="submit" value="Submit"/></div>
+                        
+                        }
+                     </div>
+                </div>
+            </div>
+            <button class="btn btn-info" data-toggle="modal" data-target="#list-modal">Create</button>
+           
+        </div>
     </div>
 </div>
 

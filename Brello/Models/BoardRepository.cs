@@ -9,6 +9,9 @@ namespace Brello.Models
     public class BoardRepository
     {
         private BoardContext context;
+        // DbContext is now ApplicationDbContext which gives use access to the
+        //table containing the users.
+        public IDbSet<ApplicationUser> Users { get { return context.Users;  } }
 
         public BoardRepository()
         {
@@ -28,6 +31,7 @@ namespace Brello.Models
             try
             {
                 found_board = query.Single<Board>();
+                _list.CreatedAt = DateTime.Now;
                 found_board.Lists.Add(_list);
                 context.SaveChanges();
             }
@@ -79,8 +83,13 @@ namespace Brello.Models
 
         public List<Board> GetBoards(ApplicationUser user1)
         {
-            var query = from b in context.Boards where b.Owner == user1 select b;
+            var query = from b in context.Boards where b.Owner.Id == user1.Id select b;
             return query.ToList<Board>(); // Same as query.ToList();
+        }
+        public Board GetBoardById(int board_id)
+        {
+            var query = from b in context.Boards where b.BoardId == board_id select b;
+            return query.Single<Board>();
         }
 
         public int GetListCount()
