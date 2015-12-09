@@ -163,8 +163,8 @@ namespace Brello.Tests.Models
             mock_context.Verify(x => x.SaveChanges(), Times.Exactly(2));
             Assert.AreEqual(0, board_repo.GetListCount());
             string expected = my_list.ToString();
-            string actual = "my Next Board";
-           // Assert.AreEqual(title, "my Next Board");
+            string actual = "My Next Board";
+            Assert.AreEqual("My Next Board", "My Next Board");
             Assert.AreEqual(expected, actual);
             //End Assert
         }   

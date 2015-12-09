@@ -17,6 +17,7 @@ namespace Brello.Models
         public Board() {
             Lists = new List<BrelloList>();
             Followers = new List<ApplicationUser>();
+          ///  Title = new List<BrelloList>().ToString();
         }
 
     }
